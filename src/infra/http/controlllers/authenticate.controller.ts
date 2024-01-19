@@ -9,11 +9,12 @@ import {
 import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation'
 import { AuthenticateUseCase } from '@/domain/delivery/enterprise/entities/authenticate'
-import { WrongCredentialsError } from '@/domain/delivery/application/use-cases/errors/wrong-credentials-error'
+import { WrongCredentialsError } from '@/core/errors/wrong-credentials-error'
 import { Public } from '@/infra/auth/public'
+import CPF from 'cpf-check'
 
 const authenticateBodySchema = z.object({
-  cpf: z.string().max(11),
+  cpf: z.string().min(14).max(14),
   password: z.string(),
 })
 
@@ -29,10 +30,14 @@ export class AuthenticateController {
   async handle(@Body() body: AuthenticateBodySchema) {
     const { cpf, password } = body
 
-    console.log(cpf)
+    const cpfIsValid = CPF.validate(cpf)
+
+    if (!cpfIsValid) {
+      throw new UnauthorizedException()
+    }
 
     const result = await this.authenticate.execute({
-      cpf,
+      cpf: CPF.strip(cpf),
       password,
     })
 

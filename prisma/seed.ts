@@ -1,14 +1,18 @@
-import { hash } from 'bcryptjs'
 import { PrismaClient } from '@prisma/client'
+import { hash } from 'bcryptjs'
+import CPF from 'cpf-check'
 
 const prisma = new PrismaClient()
 
 async function main() {
+  const cpf = CPF.strip('474.779.600-29')
+  const password = await hash('123456', 8)
+
   await prisma.user.create({
     data: {
-      cpf: '12345678900',
+      cpf,
+      password,
       role: 'ADMIN',
-      password: await hash('123456', 8),
     },
   })
 }

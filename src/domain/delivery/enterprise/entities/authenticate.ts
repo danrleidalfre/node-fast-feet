@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Either, left, right } from '@/core/either'
-import { WrongCredentialsError } from '@/domain/delivery/application/use-cases/errors/wrong-credentials-error'
+import { WrongCredentialsError } from '@/core/errors/wrong-credentials-error'
 import { UsersRepository } from '@/domain/delivery/application/repositories/users-repository'
 import { Encrypt } from '@/domain/delivery/application/cryptography/encrypt'
 import { HashComparer } from '@/domain/delivery/application/cryptography/hash-comparer'

@@ -4,6 +4,7 @@ import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 export interface UserProps {
   cpf: string
   password: string
+  role?: 'ADMIN' | 'DELIVERYMAN'
 }
 
 export class User extends Entity<UserProps> {
@@ -13,6 +14,10 @@ export class User extends Entity<UserProps> {
 
   get password() {
     return this.props.password
+  }
+
+  get role() {
+    return this.props.role
   }
 
   static create(props: UserProps, id?: UniqueEntityId) {
