@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation'
-import { AuthenticateUseCase } from '@/domain/delivery/enterprise/entities/authenticate'
+import { AuthenticateUseCase } from '@/domain/delivery/application/use-cases/authenticate'
 import { WrongCredentialsError } from '@/core/errors/wrong-credentials-error'
 import { Public } from '@/infra/auth/public'
 import CPF from 'cpf-check'

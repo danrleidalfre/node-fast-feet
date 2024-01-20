@@ -29,4 +29,14 @@ export class PrismaUsersRepository implements UsersRepository {
       data,
     })
   }
+
+  async delete(user: User): Promise<void> {
+    const data = PrismaUserMapper.toPrisma(user)
+
+    await this.prisma.user.delete({
+      where: {
+        id: data.id,
+      },
+    })
+  }
 }

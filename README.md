@@ -4,6 +4,8 @@
 
 - [x] A aplicação deve ter dois tipos de usuário, entregador e/ou admin
 - [x] Deve ser possível realizar login com CPF e Senha
+- [x] Deve ser possível realizar o cadastro de usuários
+- [x] Deve ser possível realizar a remoção de usuários
 - [ ] Deve ser possível realizar o CRUD dos entregadores
 - [ ] Deve ser possível realizar o CRUD das encomendas
 - [ ] Deve ser possível realizar o CRUD dos destinatários

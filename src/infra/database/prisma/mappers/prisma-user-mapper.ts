@@ -8,6 +8,7 @@ export class PrismaUserMapper {
       {
         cpf: raw.cpf,
         password: raw.password,
+        role: raw.role,
       },
       new UniqueEntityId(raw.id),
     )
@@ -18,6 +19,7 @@ export class PrismaUserMapper {
       id: user.id.toString(),
       cpf: user.cpf.toString(),
       password: user.password,
+      role: user.role,
     }
   }
 }
