@@ -4,7 +4,7 @@ import { PaginationParams } from '@/core/repositories/pagination-params'
 export abstract class DeliverymansRepository {
   abstract findById(id: string): Promise<Deliveryman | null>
 
-  abstract findByCpf(email: string): Promise<Deliveryman | null>
+  abstract findByCpf(cpf: string): Promise<Deliveryman | null>
 
   abstract findMany(params: PaginationParams): Promise<Deliveryman[] | null>
 
