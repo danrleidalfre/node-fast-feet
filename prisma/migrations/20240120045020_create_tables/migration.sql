@@ -14,9 +14,10 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "deliverymans" (
     "id" TEXT NOT NULL,
-    "user_id" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
+    "user_id" TEXT,
     "name" TEXT NOT NULL,
+    "cpf" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
 
     CONSTRAINT "deliverymans_pkey" PRIMARY KEY ("id")
 );
@@ -51,13 +52,13 @@ CREATE TABLE "orders" (
 CREATE UNIQUE INDEX "users_cpf_key" ON "users"("cpf");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "deliverymans_email_key" ON "deliverymans"("email");
+CREATE UNIQUE INDEX "deliverymans_cpf_key" ON "deliverymans"("cpf");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "receivers_email_key" ON "receivers"("email");
 
 -- AddForeignKey
-ALTER TABLE "deliverymans" ADD CONSTRAINT "deliverymans_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "deliverymans" ADD CONSTRAINT "deliverymans_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "orders" ADD CONSTRAINT "orders_deliveryman_id_fkey" FOREIGN KEY ("deliveryman_id") REFERENCES "deliverymans"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

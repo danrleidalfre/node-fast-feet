@@ -2,7 +2,7 @@ import { Either, left, right } from '@/core/either'
 import { Injectable } from '@nestjs/common'
 import { HashGenerator } from '@/domain/delivery/application/cryptography/hash-generator'
 import { User } from '@/domain/delivery/enterprise/entities/user'
-import { UserAlreadyExistsError } from '@/core/errors/user-already-exists-error'
+import { ResourceAlreadyExistsError } from '@/core/errors/resource-already-exists-error'
 import { UsersRepository } from '@/domain/delivery/application/repositories/users-repository'
 import CPF from 'cpf-check'
 import { CpfInvalidError } from '@/core/errors/cpf-invalid-error'
@@ -13,7 +13,7 @@ interface CreateUserUseCaseRequest {
 }
 
 type CreateUserUseCaseResponse = Either<
-  UserAlreadyExistsError | CpfInvalidError,
+  ResourceAlreadyExistsError | CpfInvalidError,
   {
     user: User
   }
@@ -35,7 +35,7 @@ export class CreateUserUseCase {
     const userWithSameCpf = await this.usersRepository.findByCpf(stripedCpf)
 
     if (userWithSameCpf) {
-      return left(new UserAlreadyExistsError(cpf))
+      return left(new ResourceAlreadyExistsError(cpf))
     }
 
     const isValidCpf = CPF.validate(stripedCpf)

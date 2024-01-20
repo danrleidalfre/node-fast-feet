@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation'
-import { DeleteUserUseCase } from '@/domain/delivery/application/use-cases/delete-user'
+import { DeleteUserUseCase } from '@/domain/delivery/application/use-cases/user/delete'
 import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error'
 
 const deleteUserBodySchema = z.object({

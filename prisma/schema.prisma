@@ -24,12 +24,13 @@ model User {
 
 model Deliveryman {
   id     String  @id @default(uuid())
-  userId String  @map("user_id")
-  email  String  @unique
+  userId String? @map("user_id")
   name   String
+  cpf    String  @unique
+  email  String
   orders Order[]
 
-  user User @relation(fields: [userId], references: [id])
+  user User? @relation(fields: [userId], references: [id])
 
   @@map("deliverymans")
 }

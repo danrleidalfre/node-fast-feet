@@ -8,8 +8,8 @@ import {
 } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation'
-import { CreateUserUseCase } from '@/domain/delivery/application/use-cases/create-user'
-import { UserAlreadyExistsError } from '@/core/errors/user-already-exists-error'
+import { CreateUserUseCase } from '@/domain/delivery/application/use-cases/user/create'
+import { ResourceAlreadyExistsError } from '@/core/errors/resource-already-exists-error'
 import { CpfInvalidError } from '@/core/errors/cpf-invalid-error'
 
 const createUserBodySchema = z.object({
@@ -37,7 +37,7 @@ export class CreateUserController {
       const error = result.value
 
       switch (error.constructor) {
-        case UserAlreadyExistsError:
+        case ResourceAlreadyExistsError:
           throw new ConflictException(error.message)
         case CpfInvalidError:
           throw new BadRequestException(error.message)
