@@ -21,7 +21,7 @@ export class RoleGuard implements CanActivate {
         return false
       }
 
-      return user.role === role[0]
+      return Array.isArray(role) ? role.includes(user.role) : user.role === role
     }
 
     return false

@@ -20,9 +20,9 @@
 
 ## Regras de negócio
 
-- [ ] Somente usuário do tipo admin pode realizar operações de CRUD nas encomendas
-- [ ] Somente usuário do tipo admin pode realizar operações de CRUD dos entregadores
-- [ ] Somente usuário do tipo admin pode realizar operações de CRUD dos destinatários
+- [x] Somente usuário do tipo admin pode realizar operações de CRUD nas encomendas
+- [x] Somente usuário do tipo admin pode realizar operações de CRUD dos entregadores
+- [x] Somente usuário do tipo admin pode realizar operações de CRUD dos destinatários
 - [ ] Para marcar uma encomenda como entregue é obrigatório o envio de uma foto
 - [ ] Somente o entregador que retirou a encomenda pode marcar ela como entregue
 - [ ] Somente o admin pode alterar a senha de um usuário
