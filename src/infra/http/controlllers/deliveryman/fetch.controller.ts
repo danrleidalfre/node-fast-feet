@@ -1,8 +1,16 @@
-import { BadRequestException, Controller, Get, Query } from '@nestjs/common'
+import {
+  BadRequestException,
+  Controller,
+  Get,
+  Query,
+  UseGuards,
+} from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation'
 import { FetchDeliverymansUseCase } from '@/domain/delivery/application/use-cases/deliveryman/fetch'
 import { DeliverymanPresenter } from '@/infra/http/presenters/deliveryman-presenter'
+import { Role } from '@/infra/guards/role.decorator'
+import { RoleGuard } from '@/infra/guards/role.guard'
 
 const pageQueryParamSchema = z
   .string()
@@ -20,6 +28,8 @@ export class FetchDeliverymansController {
   constructor(private fetchDeliverymans: FetchDeliverymansUseCase) {}
 
   @Get()
+  @UseGuards(RoleGuard)
+  @Role('ADMIN')
   async handle(@Query('page', queryValidationPipe) page: PageQueryParamSchema) {
     const result = await this.fetchDeliverymans.execute({
       page,

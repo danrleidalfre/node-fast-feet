@@ -4,12 +4,15 @@ import {
   ConflictException,
   Controller,
   Post,
+  UseGuards,
   UsePipes,
 } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation'
 import { CreateOrderUseCase } from '@/domain/delivery/application/use-cases/order/create'
 import { ResourceAlreadyExistsError } from '@/core/errors/resource-already-exists-error'
+import { RoleGuard } from '@/infra/guards/role.guard'
+import { Role } from '@/infra/guards/role.decorator'
 
 const createOrderBodySchema = z.object({
   deliverymanId: z.string().uuid(),
@@ -24,6 +27,8 @@ export class CreateOrderController {
   constructor(private createOrder: CreateOrderUseCase) {}
 
   @Post()
+  @UseGuards(RoleGuard)
+  @Role('ADMIN')
   @UsePipes(new ZodValidationPipe(createOrderBodySchema))
   async handle(@Body() body: CreateOrderBodySchema) {
     const { deliverymanId, receiverId, address } = body

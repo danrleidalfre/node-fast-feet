@@ -5,10 +5,13 @@ import {
   HttpCode,
   Param,
   Put,
+  UseGuards,
 } from '@nestjs/common'
 import { z } from 'zod'
 import { UpdateDeliverymanUseCase } from '@/domain/delivery/application/use-cases/deliveryman/update'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation'
+import { RoleGuard } from '@/infra/guards/role.guard'
+import { Role } from '@/infra/guards/role.decorator'
 
 const updateDeliverymanBodySchema = z.object({
   name: z.string(),
@@ -24,6 +27,8 @@ export class UpdateDeliverymanController {
   constructor(private updateDeliveryman: UpdateDeliverymanUseCase) {}
 
   @Put()
+  @UseGuards(RoleGuard)
+  @Role('ADMIN')
   @HttpCode(204)
   async handle(
     @Body(bodyValidationPipe) body: UpdateDeliverymanBodySchema,

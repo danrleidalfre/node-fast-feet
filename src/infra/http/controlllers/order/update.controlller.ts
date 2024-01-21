@@ -5,10 +5,13 @@ import {
   HttpCode,
   Param,
   Put,
+  UseGuards,
 } from '@nestjs/common'
 import { z } from 'zod'
 import { UpdateOrderUseCase } from '@/domain/delivery/application/use-cases/order/update'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation'
+import { RoleGuard } from '@/infra/guards/role.guard'
+import { Role } from '@/infra/guards/role.decorator'
 
 const updateOrderBodySchema = z.object({
   address: z.string(),
@@ -23,6 +26,8 @@ export class UpdateOrderController {
   constructor(private updateOrder: UpdateOrderUseCase) {}
 
   @Put()
+  @UseGuards(RoleGuard)
+  @Role('ADMIN')
   @HttpCode(204)
   async handle(
     @Body(bodyValidationPipe) body: UpdateOrderBodySchema,
