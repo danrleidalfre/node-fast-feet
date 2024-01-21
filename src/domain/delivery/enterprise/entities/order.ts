@@ -3,7 +3,7 @@ import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
 
 export interface OrderProps {
-  deliverymanId: UniqueEntityId
+  deliverymanId?: UniqueEntityId | null
   receiverId: UniqueEntityId
   address: string
   createdAt: Date

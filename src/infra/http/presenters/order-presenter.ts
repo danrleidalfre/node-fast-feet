@@ -4,7 +4,9 @@ export class OrderPresenter {
   static toHTTP(order: Order) {
     return {
       id: order.id.toString(),
-      deliverymanId: order.deliverymanId.toString(),
+      deliverymanId: order.deliverymanId
+        ? order.deliverymanId.toString()
+        : null,
       receiverId: order.receiverId.toString(),
       address: order.address,
       created_at: order.createdAt,

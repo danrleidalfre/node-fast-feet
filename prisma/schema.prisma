@@ -47,7 +47,7 @@ model Receiver {
 
 model Order {
   id            String    @id @default(uuid())
-  deliverymanId String    @map("deliveryman_id")
+  deliverymanId String?   @map("deliveryman_id")
   receiverId    String    @map("receiver_id")
   address       String
   createdAt     DateTime  @default(now()) @map("created_at")
@@ -57,8 +57,8 @@ model Order {
   returnedAt    DateTime? @map("returned_at")
   photoUrl      String?   @map("photo_url")
 
-  deliveryman Deliveryman @relation(fields: [deliverymanId], references: [id])
-  receiver    Receiver    @relation(fields: [receiverId], references: [id])
+  deliveryman Deliveryman? @relation(fields: [deliverymanId], references: [id])
+  receiver    Receiver     @relation(fields: [receiverId], references: [id])
 
   @@map("orders")
 }

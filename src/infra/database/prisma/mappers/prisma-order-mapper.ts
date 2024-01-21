@@ -6,7 +6,9 @@ export class PrismaOrderMapper {
   static toDomain(raw: PrismaOrder): Order {
     return Order.create(
       {
-        deliverymanId: new UniqueEntityId(raw.deliverymanId),
+        deliverymanId: raw.deliverymanId
+          ? new UniqueEntityId(raw.deliverymanId)
+          : null,
         receiverId: new UniqueEntityId(raw.receiverId),
         address: raw.address,
         createdAt: raw.createdAt,
@@ -23,7 +25,9 @@ export class PrismaOrderMapper {
   static toPrisma(order: Order): Prisma.OrderUncheckedCreateInput {
     return {
       id: order.id.toString(),
-      deliverymanId: order.deliverymanId.toString(),
+      deliverymanId: order.deliverymanId
+        ? order.deliverymanId.toString()
+        : null,
       receiverId: order.receiverId.toString(),
       address: order.address,
       createdAt: order.createdAt,

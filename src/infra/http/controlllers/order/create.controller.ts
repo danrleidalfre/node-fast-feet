@@ -15,7 +15,6 @@ import { RoleGuard } from '@/infra/guards/role.guard'
 import { Role } from '@/infra/guards/role.decorator'
 
 const createOrderBodySchema = z.object({
-  deliverymanId: z.string().uuid(),
   receiverId: z.string().uuid(),
   address: z.string(),
 })
@@ -31,10 +30,9 @@ export class CreateOrderController {
   @Role('ADMIN')
   @UsePipes(new ZodValidationPipe(createOrderBodySchema))
   async handle(@Body() body: CreateOrderBodySchema) {
-    const { deliverymanId, receiverId, address } = body
+    const { receiverId, address } = body
 
     const result = await this.createOrder.execute({
-      deliverymanId,
       receiverId,
       address,
     })
