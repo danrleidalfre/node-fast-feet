@@ -6,6 +6,8 @@ import { DeliverymansRepository } from '@/domain/delivery/application/repositori
 import { PrismaDeliverymansRepository } from '@/infra/database/prisma/repositories/prisma-deliverymans-repository'
 import { ReceiversRepository } from '@/domain/delivery/application/repositories/receivers-repository'
 import { PrismaReceiversRepository } from '@/infra/database/prisma/repositories/prisma-receivers-repository'
+import { OrdersRepository } from '@/domain/delivery/application/repositories/orders-repository'
+import { PrismaOrdersRepository } from '@/infra/database/prisma/repositories/prisma-orders-repository'
 
 @Module({
   providers: [
@@ -22,12 +24,17 @@ import { PrismaReceiversRepository } from '@/infra/database/prisma/repositories/
       provide: ReceiversRepository,
       useClass: PrismaReceiversRepository,
     },
+    {
+      provide: OrdersRepository,
+      useClass: PrismaOrdersRepository,
+    },
   ],
   exports: [
     PrismaService,
     UsersRepository,
     DeliverymansRepository,
     ReceiversRepository,
+    OrdersRepository,
   ],
 })
 export class DatabaseModule {}

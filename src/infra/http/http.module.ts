@@ -27,6 +27,16 @@ import { FetchReceiversUseCase } from '@/domain/delivery/application/use-cases/r
 import { GetReceiverByIdUseCase } from '@/domain/delivery/application/use-cases/receiver/get'
 import { UpdateReceiverUseCase } from '@/domain/delivery/application/use-cases/receiver/update'
 import { DeleteReceiverUseCase } from '@/domain/delivery/application/use-cases/receiver/delete'
+import { CreateOrderController } from '@/infra/http/controlllers/order/create.controller'
+import { GetOrderByIdController } from '@/infra/http/controlllers/order/get.controller'
+import { FetchOrdersController } from '@/infra/http/controlllers/order/fetch.controller'
+import { UpdateOrderController } from '@/infra/http/controlllers/order/update.controlller'
+import { DeleteOrderController } from '@/infra/http/controlllers/order/delete.controller'
+import { CreateOrderUseCase } from '@/domain/delivery/application/use-cases/order/create'
+import { FetchOrdersUseCase } from '@/domain/delivery/application/use-cases/order/fetch'
+import { GetOrderByIdUseCase } from '@/domain/delivery/application/use-cases/order/get'
+import { UpdateOrderUseCase } from '@/domain/delivery/application/use-cases/order/update'
+import { DeleteOrderUseCase } from '@/domain/delivery/application/use-cases/order/delete'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -44,6 +54,11 @@ import { DeleteReceiverUseCase } from '@/domain/delivery/application/use-cases/r
     GetReceiverByIdController,
     UpdateReceiverController,
     DeleteReceiverController,
+    CreateOrderController,
+    FetchOrdersController,
+    GetOrderByIdController,
+    UpdateOrderController,
+    DeleteOrderController,
   ],
   providers: [
     AuthenticateUseCase,
@@ -59,6 +74,11 @@ import { DeleteReceiverUseCase } from '@/domain/delivery/application/use-cases/r
     GetReceiverByIdUseCase,
     UpdateReceiverUseCase,
     DeleteReceiverUseCase,
+    CreateOrderUseCase,
+    FetchOrdersUseCase,
+    GetOrderByIdUseCase,
+    UpdateOrderUseCase,
+    DeleteOrderUseCase,
   ],
 })
 export class HttpModule {}
