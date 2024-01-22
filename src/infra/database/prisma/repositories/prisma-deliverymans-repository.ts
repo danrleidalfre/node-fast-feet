@@ -23,6 +23,20 @@ export class PrismaDeliverymansRepository implements DeliverymansRepository {
     return PrismaDeliverymanMapper.toDomain(deliveryman)
   }
 
+  async findByUserId(id: string): Promise<Deliveryman | null> {
+    const deliveryman = await this.prisma.deliveryman.findFirst({
+      where: {
+        userId: id,
+      },
+    })
+
+    if (!deliveryman) {
+      return null
+    }
+
+    return PrismaDeliverymanMapper.toDomain(deliveryman)
+  }
+
   async findByCpf(cpf: string): Promise<Deliveryman | null> {
     const deliveryman = await this.prisma.deliveryman.findUnique({
       where: {

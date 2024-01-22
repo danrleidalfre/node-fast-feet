@@ -19,6 +19,10 @@ export class Order extends Entity<OrderProps> {
     return this.props.deliverymanId
   }
 
+  set deliverymanId(deliverymanId: UniqueEntityId | undefined | null) {
+    this.props.deliverymanId = deliverymanId
+  }
+
   get receiverId() {
     return this.props.receiverId
   }
@@ -39,16 +43,32 @@ export class Order extends Entity<OrderProps> {
     return this.props.availableAt
   }
 
+  set availableAt(availableAt: Date | undefined | null) {
+    this.props.availableAt = availableAt
+  }
+
   get withdrawalAt() {
     return this.props.withdrawalAt
+  }
+
+  set withdrawalAt(withdrawalAt: Date | undefined | null) {
+    this.props.withdrawalAt = withdrawalAt
   }
 
   get deliveredAt() {
     return this.props.deliveredAt
   }
 
+  set deliveredAt(deliveredAt: Date | undefined | null) {
+    this.props.deliveredAt = deliveredAt
+  }
+
   get returnedAt() {
     return this.props.returnedAt
+  }
+
+  set returnedAt(returnedAt: Date | undefined | null) {
+    this.props.returnedAt = returnedAt
   }
 
   get photoUrl() {

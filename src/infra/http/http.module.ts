@@ -37,6 +37,8 @@ import { FetchOrdersUseCase } from '@/domain/delivery/application/use-cases/orde
 import { GetOrderByIdUseCase } from '@/domain/delivery/application/use-cases/order/get'
 import { UpdateOrderUseCase } from '@/domain/delivery/application/use-cases/order/update'
 import { DeleteOrderUseCase } from '@/domain/delivery/application/use-cases/order/delete'
+import { UpdateDeliveryController } from '@/infra/http/controlllers/order/delivery/update.controller'
+import { UpdateDeliveryUseCase } from '@/domain/delivery/application/use-cases/order/delivery/update'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -59,6 +61,7 @@ import { DeleteOrderUseCase } from '@/domain/delivery/application/use-cases/orde
     GetOrderByIdController,
     UpdateOrderController,
     DeleteOrderController,
+    UpdateDeliveryController,
   ],
   providers: [
     AuthenticateUseCase,
@@ -79,6 +82,7 @@ import { DeleteOrderUseCase } from '@/domain/delivery/application/use-cases/orde
     GetOrderByIdUseCase,
     UpdateOrderUseCase,
     DeleteOrderUseCase,
+    UpdateDeliveryUseCase,
   ],
 })
 export class HttpModule {}
