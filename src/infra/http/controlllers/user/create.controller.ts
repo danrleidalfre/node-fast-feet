@@ -4,6 +4,7 @@ import {
   ConflictException,
   Controller,
   Post,
+  UseGuards,
   UsePipes,
 } from '@nestjs/common'
 import { z } from 'zod'
@@ -11,6 +12,8 @@ import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation'
 import { CreateUserUseCase } from '@/domain/delivery/application/use-cases/user/create'
 import { ResourceAlreadyExistsError } from '@/core/errors/resource-already-exists-error'
 import { CpfInvalidError } from '@/core/errors/cpf-invalid-error'
+import { RoleGuard } from '@/infra/guards/role.guard'
+import { Role } from '@/infra/guards/role.decorator'
 
 const createUserBodySchema = z.object({
   cpf: z.string().min(14).max(14),
@@ -24,6 +27,8 @@ export class CreateUserController {
   constructor(private createUser: CreateUserUseCase) {}
 
   @Post()
+  @UseGuards(RoleGuard)
+  @Role('ADMIN')
   @UsePipes(new ZodValidationPipe(createUserBodySchema))
   async handle(@Body() body: CreateUserBodySchema) {
     const { cpf, password } = body

@@ -39,12 +39,17 @@ import { UpdateOrderUseCase } from '@/domain/delivery/application/use-cases/orde
 import { DeleteOrderUseCase } from '@/domain/delivery/application/use-cases/order/delete'
 import { UpdateDeliveryController } from '@/infra/http/controlllers/order/delivery/update.controller'
 import { UpdateDeliveryUseCase } from '@/domain/delivery/application/use-cases/order/delivery/update'
+import { UpdateUserController } from '@/infra/http/controlllers/user/update.controller'
+import { UpdateUserUseCase } from '@/domain/delivery/application/use-cases/user/update'
+import { FetchDeliveriesByReceiverController } from '@/infra/http/controlllers/order/delivery/fetch-deliveries-by-receiver.controller'
+import { FetchDeliveriesByReceiverUseCase } from '@/domain/delivery/application/use-cases/order/delivery/fetch-deliveries-by-receiver'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
   controllers: [
     AuthenticateController,
     CreateUserController,
+    UpdateUserController,
     DeleteUserController,
     CreateDeliverymanController,
     FetchDeliverymansController,
@@ -62,10 +67,12 @@ import { UpdateDeliveryUseCase } from '@/domain/delivery/application/use-cases/o
     UpdateOrderController,
     DeleteOrderController,
     UpdateDeliveryController,
+    FetchDeliveriesByReceiverController,
   ],
   providers: [
     AuthenticateUseCase,
     CreateUserUseCase,
+    UpdateUserUseCase,
     DeleteUserUseCase,
     CreateDeliverymanUseCase,
     FetchDeliverymansUseCase,
@@ -83,6 +90,7 @@ import { UpdateDeliveryUseCase } from '@/domain/delivery/application/use-cases/o
     UpdateOrderUseCase,
     DeleteOrderUseCase,
     UpdateDeliveryUseCase,
+    FetchDeliveriesByReceiverUseCase,
   ],
 })
 export class HttpModule {}
