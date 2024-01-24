@@ -16,7 +16,6 @@
 - [x] Deve ser possível alterar a senha de um usuário
 - [x] Deve ser possível listar as entregas de um usuário
 - [x] Deve ser possível listar as encomendas com endereços de entrega próximo ao local do entregador (raio de 50km)
-- [ ] Deve ser possível notificar o destinatário a cada alteração no status da encomenda
 
 ## Regras de negócio
 
@@ -26,4 +25,3 @@
 - [x] Somente o entregador que retirou a encomenda pode marcar ela como entregue
 - [x] Somente o admin pode alterar a senha de um usuário
 - [x] Não deve ser possível um entregador listar as encomendas de outro entregador
-- [ ] Para marcar uma encomenda como entregue é obrigatório o envio de uma foto
