@@ -11,6 +11,10 @@ export abstract class OrdersRepository {
     params: PaginationParams,
   ): Promise<Order[] | null>
 
+  abstract findManyAvailable(): Promise<Order[] | null>
+
+  abstract findManyByIds(ids: (string | undefined)[]): Promise<Order[] | null>
+
   abstract create(order: Order): Promise<void>
 
   abstract update(order: Order): Promise<void>

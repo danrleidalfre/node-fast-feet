@@ -43,6 +43,10 @@ import { UpdateUserController } from '@/infra/http/controlllers/user/update.cont
 import { UpdateUserUseCase } from '@/domain/delivery/application/use-cases/user/update'
 import { FetchDeliveriesByReceiverController } from '@/infra/http/controlllers/order/delivery/fetch-deliveries-by-receiver.controller'
 import { FetchDeliveriesByReceiverUseCase } from '@/domain/delivery/application/use-cases/order/delivery/fetch-deliveries-by-receiver'
+import { EnvService } from '@/infra/env/env.service'
+import { FetchDeliveriesNearbyController } from '@/infra/http/controlllers/order/delivery/fetch-deliveries-nearby.controller'
+import { FetchDeliveriesNearbyUseCase } from '@/domain/delivery/application/use-cases/order/delivery/fetch-deliveries-nearby'
+import { GeocodingService } from '@/infra/services/geocoding.service'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -68,6 +72,7 @@ import { FetchDeliveriesByReceiverUseCase } from '@/domain/delivery/application/
     DeleteOrderController,
     UpdateDeliveryController,
     FetchDeliveriesByReceiverController,
+    FetchDeliveriesNearbyController,
   ],
   providers: [
     AuthenticateUseCase,
@@ -91,6 +96,9 @@ import { FetchDeliveriesByReceiverUseCase } from '@/domain/delivery/application/
     DeleteOrderUseCase,
     UpdateDeliveryUseCase,
     FetchDeliveriesByReceiverUseCase,
+    FetchDeliveriesNearbyUseCase,
+    GeocodingService,
+    EnvService,
   ],
 })
 export class HttpModule {}
